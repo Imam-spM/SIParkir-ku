@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Firebase User Authentication Example</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div id="main">
+      <h2>Login</h2>
+      <input type="text" id="email" placeholder="Enter your email" />
+      <input type="password" id="password" placeholder="Enter your password" />
+      <button id="submit">Login</button>
+      <button id="sign-up">Sign up</button>
+    </div>
+
+    <div id="create-acct" style="display: none">
+      <h2>Create Account</h2>
+      <input type="text" id="username" placeholder="Enter your username" />
+      <input type="text" id="email-signup" placeholder="Enter your email" />
+      <input
+        type="text"
+        id="confirm-email-signup"
+        placeholder="Confirm your email"
+      />
+      <input
+        type="password"
+        id="password-signup"
+        placeholder="Enter your password"
+      />
+      <input
+        type="password"
+        id="confirm-password-signup"
+        placeholder="Confirm your password"
+      />
+      <button id="create-acct-btn">Create Account</button>
+      <button id="return-btn">Return to Login</button>
+    </div>
+
+    
+    <script src="main.js" type="module"></script>
+  </body>
+</html>

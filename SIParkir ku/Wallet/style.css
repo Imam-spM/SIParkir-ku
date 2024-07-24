@@ -1,0 +1,272 @@
+/* Wallet Page CSS */
+.navbar {
+  background-color: #0e3f0ef5;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo img {
+  width: 100px;
+  height: 40px;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Centered the navigation items */
+  align-items: center;
+  position: relative;
+  width: 300px; /* Adjusted for a more realistic size */
+  height: 50px; /* Adjusted for a more realistic size */
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links li {
+  margin-right: 20px;
+}
+
+.nav-links li:last-child {
+  margin-right: 0; /* Remove margin from the last item */
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px; /* Adjusted font size */
+  padding: 10px 15px; /* Added padding for better click area */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+  border-radius: 5px; /* Added border radius */
+}
+
+.nav-links li a:hover {
+  background-color: #555; /* Hover background color */
+  color: #ffcc00; /* Hover text color */
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  height: 50px;
+  padding: 20px;
+}
+
+.username {
+  margin-right: 15px;
+  padding-right: 20px; /* Tambahkan padding di sebelah kanan username */
+  border-right: 1px solid #e0e0e0; /* Tambahkan garis antara username dan gambar pengguna */
+}
+
+.user img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background-color: #333;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #fff;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #575757;
+}
+
+.user:hover .dropdown-content {
+  display: block;
+}
+
+.hamberger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.hamberger .icon {
+  display: none;
+}
+
+.hamberger .icon#hamIcon {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-links {
+    display: none; /* Hide nav-links by default on small screens */
+    flex-direction: column; /* Change layout to vertical */
+    width: 100%; /* Full width for small screens */
+    border-radius: 0; /* Remove border radius for small screens */
+    box-shadow: none; /* Remove box shadow for small screens */
+    background-color: #333; /* Background color to match the navbar */
+    position: absolute; /* Position absolute to be controlled by top property */
+    width: 300px;
+    height: 50px;
+  }
+
+  .hamberger {
+    display: flex;
+    align-items: center;
+    order: 1;
+  }
+
+  .hamberger .icon {
+    display: block;
+  }
+
+  .hamberger .icon#closeIcon {
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links.active li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .hamberger.active .icon#hamIcon {
+    display: none;
+  }
+
+  .hamberger.active .icon#closeIcon {
+    display: block;
+  }
+
+  .user {
+    order: 1;
+    margin-left: auto;
+  }
+}
+
+/* Section styling */
+.section {
+  background-color: #ffff;
+  display: flex;
+  justify-content: center; /* Center dashboard horizontally */
+  align-items: center; /* Center dashboard vertically */
+  padding: 20px; /* Add some padding for smaller screens */
+}
+
+/* Dashboard styling */
+.dashboard {
+  box-sizing: border-box;
+  background-image: url(../public/Icon/bg-dashboard.svg);
+  width: 100%; /* Set width to 100% and use max-width for responsiveness */
+  height: 180px;
+  background-size: cover;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center; /* Center welcome message horizontally */
+  align-items: center; /* Center welcome message vertically */
+  position: relative;
+  padding: 20px; /* Add some padding */
+}
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  color: #333;
+}
+
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+  background-color: #007bff;
+  color: #fff;
+}
+
+thead th {
+  padding: 10px;
+  text-align: left;
+  font-weight: 600;
+}
+
+tbody td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+  table {
+    width: 100%;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  tbody td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    width: 50%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: 600;
+  }
+}

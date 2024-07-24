@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="app.css" />
+    <style>
+      /* Add styles for the modal */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        padding-top: 60px;
+      }
+      .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+      }
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="../public/Home/Home.html"
+          ><img src="./Icon/logo.png" alt="" />
+        </a>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#">Home</a></li>
+        <li><a href="../public/Wallet/Wallet.html">Wallet</a></li>
+        <li><a href="../public/History/History.html">History</a></li>
+      </ul>
+      <div class="user">
+        <span class="username" id="operator">username</span>
+        <img src="./Icon/account.svg" alt="Account Icon" id="user-icon" />
+        <div class="dropdown-content">
+          <a href="/public/Profile/profile.html">Profile</a>
+          <a href="./Home/Home.html" onclick="logout()">Keluar</a>
+        </div>
+      </div>
+      <div class="hamberger" onclick="toggleMenu()">
+        <div class="icon" id="hamIcon">&#9776;</div>
+        <div class="icon" id="closeIcon">&#10006;</div>
+      </div>
+    </nav>
+    <div class="section">
+      <div class="dashboard">
+        <span id="dashboard-title">Dashboard</span>
+        <div class="welcome-message" id="welcome-message">
+          Welcome back to developer
+        </div>
+        <div class="current-mode" id="current-mode"></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <section class="monitoring">
+        <h2>Monitoring Slot</h2>
+        <div class="slot-container">
+          <div class="slot-entry">
+            <h3>Slot Masuk</h3>
+            <p id="entryCount">Loading...</p>
+          </div>
+          <div class="slot-total">
+            <h3>Total Slot</h3>
+            <p id="totalSlot">15</p>
+            <div class="control">
+              <label for="palang-switch">Palang masuk:</label>
+              <label class="switch">
+                <input type="checkbox" id="palangin-switch" />
+                <span class="slider round"></span>
+              </label>
+              <label for="palang-switch">Palang keluar:</label>
+              <label class="switch">
+                <input type="checkbox" id="palangout-switch" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="slot-exit">
+            <h3>Slot Keluar</h3>
+            <p id="exitCount">Menunggu kendaraan keluar</p>
+            <button id="exitPermissionButton">Izin Keluar</button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <section class="control1">
+      <div class="control">
+        <label for="control-dropdown">Mode Kendali:</label>
+        <select id="control-dropdown">
+          <option value="manual">Manual</option>
+          <option value="automatic">Otomatis</option>
+        </select>
+      </div>
+      <div class="clock-container">
+        <div class="date" id="date"></div>
+        <div class="time" id="time"></div>
+      </div>
+    </section>
+    <footer class="footer-container">
+      <div class="footer-content">
+        &copy; <span id="year"></span> MatthewC90. All rights reserved.
+      </div>
+    </footer>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>
+          A slot exit has been detected. Do you want to grant exit permission?
+        </p>
+        <button id="modalExitPermissionButton">Grant Permission</button>
+      </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        onValue,
+        update,
+        set,
+      } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyCXWxFpJgrE2Dg6Yn3psS1w6r9HR2liBPg",
+        authDomain: "projek-smart.firebaseapp.com",
+        databaseURL:
+          "https://projek-smart-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "projek-smart",
+        storageBucket: "projek-smart.appspot.com",
+        messagingSenderId: "887947831056",
+        appId: "1:887947831056:web:44a84cb022c58616e06795",
+        measurementId: "G-QF2PC7GQE5",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      // Get a reference to the Firebase Realtime Database
+      const db = getDatabase();
+
+      // Get a reference to the "slot-masuk" node in the database
+      const slotEntryRef = ref(db, "slot");
+      const palangInRef = ref(db, "palangin");
+      const palangOutRef = ref(db, "palangout");
+
+      // Get references to the HTML elements for the switches
+      const palangInSwitch = document.getElementById("palangin-switch");
+      const palangOutSwitch = document.getElementById("palangout-switch");
+
+      // Get a reference to the HTML element where we'll display the slot count
+      const entryCountElement = document.getElementById("entryCount");
+      const exitCountElement = document.getElementById("exitCount");
+      const controlDropdown = document.getElementById("control-dropdown");
+      const operator = document.getElementById("operator");
+      const exitPermissionButton = document.getElementById(
+        "exitPermissionButton"
+      );
+      const modal = document.getElementById("myModal");
+      const closeModal = document.getElementsByClassName("close")[0];
+      const modalExitPermissionButton = document.getElementById(
+        "modalExitPermissionButton"
+      );
+
+      // Listen for changes to the value of "slot" node
+      onValue(
+        slotEntryRef,
+        (snapshot) => {
+          const entryData = snapshot.val();
+          if (entryData) {
+            entryCountElement.innerText = "Slot Masuk: " + entryData.slot;
+          } else {
+            entryCountElement.innerText = "Data tidak ditemukan";
+          }
+        },
+        {
+          // Set error handling to true
+          errorHandling: true,
+        }
+      );
+      // Listen for changes to the value of "palangin" node
+      onValue(palangInRef, (snapshot) => {
+        const palangInStatus = snapshot.val();
+        if (palangInStatus !== null) {
+          palangInSwitch.checked = !!palangInStatus; // Convert to boolean
+        }
+      });
+
+      // Listen for changes to the value of "palangout" node
+      onValue(palangOutRef, (snapshot) => {
+        const palangOutStatus = snapshot.val();
+        if (palangOutStatus !== null) {
+          palangOutSwitch.checked = !!palangOutStatus; // Convert to boolean
+        }
+      });
+
+      // Add event listeners to the switches
+      palangInSwitch.addEventListener("change", (event) => {
+        const palangInStatus = event.target.checked ? 1 : 0; // Convert boolean to 1 or 0
+        update(palangInRef, { status: palangInStatus }); // Update the "palangin" node
+      });
+
+      palangOutSwitch.addEventListener("change", (event) => {
+        const palangOutStatus = event.target.checked ? 1 : 0; // Convert boolean to 1 or 0
+        update(palangOutRef, { status: palangOutStatus }); // Update the "palangout" node
+      });
+
+      const modeRef = ref(db, "mode");
+
+      function updateModeInFirebase(mode) {
+        set(modeRef, mode) // Sudah diperbaiki: Saya sudah memasukkan fungsi 'set'
+          .then(() => {
+            console.log("Mode berhasil diperbarui");
+          })
+          .catch((error) => {
+            console.error("Error saat memperbarui mode: ", error);
+          });
+      }
+      // Receive mode from Firebase and update the dropdown
+      function receiveModeFromFirebase() {
+        onValue(modeRef, (snapshot) => {
+          const mode = snapshot.val();
+          controlDropdown.value = mode;
+        });
+      }
+
+      // Event listener for mode dropdown change
+      document.addEventListener("DOMContentLoaded", (event) => {
+        controlDropdown.addEventListener("change", (event) => {
+          const mode = event.target.value;
+          updateModeInFirebase(mode);
+        });
+
+        receiveModeFromFirebase();
+
+        // Update Firebase listener to also update dashboard content
+        function receiveModeFromFirebase() {
+          onValue(modeRef, (snapshot) => {
+            const mode = snapshot.val();
+            controlDropdown.value = mode;
+            updateDashboardContent(mode); // Call the function to update the dashboard content
+          });
+        }
+      });
+      exitPermissionButton.addEventListener("click", () => {
+        modal.style.display = "block";
+      });
+
+      closeModal.addEventListener("click", () => {
+        modal.style.display = "none";
+      });
+
+      window.addEventListener("click", (event) => {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      });
+
+      modalExitPermissionButton.addEventListener("click", () => {
+        // Logic to grant exit permission
+        console.log("Exit permission granted");
+        modal.style.display = "none";
+      });
+    </script>
+    <script src="app.js"></script>
+  </body>
+</html>

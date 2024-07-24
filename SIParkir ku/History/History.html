@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>History Page</title>
+    <link rel="stylesheet" href="History.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo"><img src="../Icon/logo.png" alt="" /></div>
+      <div class="main-container">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../Wallet/Wallet.html">Wallet</a></li>
+          <li><a href="#">History</a></li>
+        </ul>
+      </div>
+      <div class="user">
+        <span class="username">Operator</span>
+        <img src="../Icon/account.svg" alt="Account Icon" id="user-icon" />
+        <div class="dropdown-content">
+          <a href="#profile">Profile</a>
+          <a href="#logout" onclick="logout()">Keluar</a>
+        </div>
+      </div>
+      <div class="hamberger" onclick="toggleMenu()">
+        <div class="icon" id="hamIcon">&#9776;</div>
+        <div class="icon" id="closeIcon">&#10006;</div>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="content">
+      <section class="history">
+        <h2>History</h2>
+        <button id="delete-all-btn">Delete All</button>
+        <table id="history-table">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Kendaraan</th>
+              <th>Tanggal Masuk</th>
+              <th>Tanggal Keluar</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="history-body">
+            <!-- Data history kendaraan akan ditampilkan di sini -->
+          </tbody>
+        </table>
+      </section>
+    </div>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        onValue,
+        remove,
+      } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyCXWxFpJgrE2Dg6Yn3psS1w6r9HR2liBPg",
+        authDomain: "projek-smart.firebaseapp.com",
+        databaseURL:
+          "https://projek-smart-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "projek-smart",
+        storageBucket: "projek-smart.appspot.com",
+        messagingSenderId: "887947831056",
+        appId: "1:887947831056:web:44a84cb022c58616e06795",
+        measurementId: "G-QF2PC7GQE5",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      // Get a reference to the Firebase Realtime Database
+      const db = getDatabase();
+
+      const historyRef = ref(db, "history");
+
+      // Function to delete a history entry
+      const deleteHistoryEntry = (key) => {
+        const entryRef = ref(db, `history/${key}`);
+        remove(entryRef)
+          .then(() => {
+            console.log(`Entry ${key} deleted successfully`);
+          })
+          .catch((error) => {
+            console.error(`Error deleting entry ${key}:`, error);
+          });
+      };
+
+      // Function to delete all history entries
+      const deleteAllHistoryEntries = () => {
+        remove(historyRef)
+          .then(() => {
+            console.log("All history entries deleted successfully");
+          })
+          .catch((error) => {
+            console.error("Error deleting all history entries:", error);
+          });
+      };
+
+      // Listen for changes to the value of "history" node
+      onValue(historyRef, (snapshot) => {
+        const historyData = snapshot.val();
+        const historyTableBody = document.getElementById("history-body");
+
+        // Clear previous data
+        historyTableBody.innerHTML = "";
+
+        // Iterate over history data and populate table rows
+        let count = 1;
+        for (const key in historyData) {
+          if (Object.hasOwnProperty.call(historyData, key)) {
+            const historyEntry = historyData[key];
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${count}</td>
+              <td>${historyEntry.kendaraan}</td>
+              <td>${historyEntry.masuk}</td>
+              <td>${historyEntry.keluar}</td>
+              <td>${historyEntry.status}</td>
+              <td><button onclick="deleteHistoryEntry('${key}')">Delete</button></td>
+            `;
+            historyTableBody.appendChild(row);
+            count++;
+          }
+        }
+      });
+
+      // Make the delete functions globally accessible
+      window.deleteHistoryEntry = deleteHistoryEntry;
+      window.deleteAllHistoryEntries = deleteAllHistoryEntries;
+
+      // Add event listener to "Delete All" button
+      document
+        .getElementById("delete-all-btn")
+        .addEventListener("click", deleteAllHistoryEntries);
+    </script>
+    <script src="app.js"></script>
+  </body>
+</html>

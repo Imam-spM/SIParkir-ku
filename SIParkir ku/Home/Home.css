@@ -1,0 +1,482 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+}
+
+.navbar {
+  background-color: #0e3f0ef5;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo img {
+  width: 100px;
+  height: auto;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Centered the navigation items */
+  align-items: center;
+  position: relative;
+  width: 300px; /* Adjusted for a more realistic size */
+  height: 50px; /* Adjusted for a more realistic size */
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links li {
+  margin-right: 20px;
+}
+
+.nav-links li:last-child {
+  margin-right: 0; /* Remove margin from the last item */
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px; /* Adjusted font size */
+  padding: 10px 15px; /* Added padding for better click area */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+  border-radius: 5px; /* Added border radius */
+}
+
+.nav-links li a:hover {
+  background-color: #555; /* Hover background color */
+  color: #ffcc00; /* Hover text color */
+}
+
+.user {
+  display: flex;
+  gap: 1px;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  height: 50px;
+  padding: 0 0px; /* Adjusted padding for better alignment */
+}
+
+.login,
+.register {
+  cursor: pointer;
+  margin: auto 0;
+  padding: 5px 15px; /* Added padding for better click area */
+  border-radius: 5px; /* Added border radius */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effects */
+  border-right: 1px solid #e0e0e0;
+}
+
+.login:hover,
+.register:hover {
+  color: #ffcc00; /* Hover text color */
+}
+
+.hamberger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.hamberger .icon {
+  display: none;
+}
+
+.hamberger .icon#hamIcon {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    top: 110px;
+    right: 0; /* Tambahkan ini untuk mengatur posisi nav-links di sebelah kanan */
+    background-color: #333; /* Pindahkan background-color ke nav-links untuk mencakup seluruh daftar */
+    width: 100%; /* Pastikan nav-links mencakup seluruh lebar */
+    border: none;
+  }
+
+  .hamberger {
+    display: flex;
+    align-items: center;
+    order: 1;
+  }
+
+  .hamberger .icon {
+    display: block;
+  }
+
+  .hamberger .icon#closeIcon {
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+    
+  }
+
+  .nav-links.active li {
+    margin: 0;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    background-color: #333;
+    align-items: center;
+    
+  }
+
+  .hamberger.active .icon#hamIcon {
+    display: none;
+  }
+
+  .hamberger.active .icon#closeIcon {
+    display: block;
+  }
+
+  .user {
+    order: 1;
+    margin-left: auto;
+    
+  }
+}
+
+.page1, .page2, .tutorial {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px 50px 20px;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.page1 {
+  background-image: url("../Icon/bg-home.avif");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 100vh; /* Set height to full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page1 h1 {
+  margin-bottom: 20px;
+  font-style: bold;
+  font-size: 2.5em;
+  color: #115f2a;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+.page1 p {
+  max-width: 600px;
+  text-align: center;
+  font-size: 1.5em; /* Adjusted for readability */
+  font-weight: bold; /* Corrected from 'font-style: bold' to 'font-weight: bold' */
+  line-height: 1.6; /* Added line-height for better readability */
+  margin: 20px auto; /* Centered with automatic margins */
+  color: #333; /* Dark gray color for the text */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Added subtle text shadow */
+  padding: 10px 20px; /* Added padding for better spacing */
+  border-radius: 10px; /* Rounded corners */
+  background: rgba(249, 249, 249, 0.8); /* Light background color with transparency */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added subtle box shadow */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+}
+
+button {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049; /* Darker green */
+}
+
+@media (max-width : 768px) {
+  .page1, .page2, .tutorial {
+    padding: 80px 20px 50px 20px;
+  }
+
+  .page1 h1, .page2 h1, .tutorial h1 {
+    font-size: 2em;
+  }
+
+  .page1 p, .page2 p, .tutorial p {
+    font-size: 1em;
+  }
+}
+
+.content {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* About Us Section */
+#About {
+  background-color: #f4f4f9;
+  padding: 50px 0;
+  text-align: center;
+}
+
+#About h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#About p {
+  font-size: 1.2em;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Features Section */
+#Features {
+  background-color: #fff;
+  padding: 50px 0;
+}
+
+#Features h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+#Features ul {
+  list-style: none;
+  padding: 0;
+}
+
+#Features ul li {
+  background: #f9f9f9;
+  border-left: 5px solid #ff7f50;
+  margin-bottom: 15px;
+  padding: 15px;
+  font-size: 1.1em;
+  color: #333;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+#Features ul li strong {
+  color: #ff7f50;
+}
+
+#Features ul li:hover {
+  background: #ff7f50;
+  color: #fff;
+}
+
+#Features ul li:hover strong {
+  color: #fff;
+}
+
+#HowItWorks {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f4f4f9;
+  border-radius: 10px;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  width: 90%;
+  max-width: 800px;
+}
+
+#HowItWorks h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+#HowItWorks p, #HowItWorks ol {
+  font-size: 1.1em;
+  color: #444;
+}
+
+#HowItWorks ol {
+  padding-left: 20px;
+}
+
+#HowItWorks ol li {
+  margin-bottom: 15px;
+  position: relative;
+  padding-left: 30px;
+}
+
+#HowItWorks ol li::before {
+  content: '✔';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #74ebd5;
+  font-size: 1.2em;
+}
+
+.content, .content2 {
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  #About h1 {
+    font-size: 2em;
+  }
+
+  #About p {
+    font-size: 1em;
+  }
+
+  #Features h2 {
+    font-size: 1.75em;
+  }
+
+  #Features ul li {
+    font-size: 1em;
+  }
+
+  #HowItWorks h2 {
+    font-size: 1.5em;
+  }
+
+  #HowItWorks p, #HowItWorks ol {
+    font-size: 1em;
+  }
+}
+
+/* Gaya untuk bagian Benefit */
+#Benefits.page {
+  background-color: #f5f5f5;
+  padding: 50px;
+}
+
+#Benefits.page h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#Benefits.page ul {
+  list-style: none;
+  padding: 0;
+}
+
+#Benefits.page ul li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 15px;
+  font-size: 1.1em;
+  color: #333;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+#Benefits.page ul li strong {
+  color: #007bff; /* Biru */
+}
+
+#Benefits.page ul li:hover {
+  background-color: #e0e0e0;
+}
+
+/* Gaya untuk bagian Contact */
+#Contact.page {
+  background-color: #f0f0f0;
+  padding: 50px;
+}
+
+#Contact.page h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#Contact.page p {
+  font-size: 1.1em;
+  color: #666;
+  line-height: 1.5;
+}
+
+#Contact.page a {
+  color: #007bff; /* Biru */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+#Contact.page a:hover {
+  color: #0056b3; /* Biru tua */
+}
+
+#Contact.page form {
+  margin-top: 30px;
+}
+
+#Contact.page .form-group {
+  margin-bottom: 15px;
+}
+
+#Contact.page .form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+#Contact.page textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  #Benefits.page, #Contact.page {
+    padding: 30px;
+  }
+
+  #Benefits.page h2, #Contact.page h2 {
+    font-size: 1.75em;
+  }
+
+  #Benefits.page ul li, #Contact.page .form-control {
+    font-size: 1em;
+  }
+}

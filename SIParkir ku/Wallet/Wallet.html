@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Wallet</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="../public/Home/Home.html"
+          ><img src="./Icon/logo.png" alt="" />
+        </a>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="#">Wallet</a></li>
+        <li><a href="../History/History.html">History</a></li>
+      </ul>
+      <div class="user">
+        <span class="username" id="operator">username</span>
+        <img src="./Icon/account.svg" alt="Account Icon" id="user-icon" />
+        <div class="dropdown-content">
+          <a href="/public/Profile/profile.html">Profile</a>
+          <a href="./Home/Home.html" onclick="logout()">Keluar</a>
+        </div>
+      </div>
+      <div class="hamberger" onclick="toggleMenu()">
+        <div class="icon" id="hamIcon">&#9776;</div>
+        <div class="icon" id="closeIcon">&#10006;</div>
+      </div>
+    </nav>
+    <h1>Wallet</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Kendaraan</th>
+          <th>Waktu</th>
+          <th>Jumlah</th>
+        </tr>
+      </thead>
+      <tbody id="wallet-body">
+        <!-- Payment records will be populated here -->
+      </tbody>
+    </table>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        onValue,
+      } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCXWxFpJgrE2Dg6Yn3psS1w6r9HR2liBPg",
+        authDomain: "projek-smart.firebaseapp.com",
+        databaseURL:
+          "https://projek-smart-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "projek-smart",
+        storageBucket: "projek-smart.appspot.com",
+        messagingSenderId: "887947831056",
+        appId: "1:887947831056:web:44a84cb022c58616e06795",
+        measurementId: "G-QF2PC7GQE5",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase();
+
+      const walletRef = ref(db, "wallet");
+
+      onValue(walletRef, (snapshot) => {
+        const walletData = snapshot.val();
+        const walletTableBody = document.getElementById("wallet-body");
+        walletTableBody.innerHTML = "";
+
+        let count = 1;
+        for (const key in walletData) {
+          if (Object.hasOwnProperty.call(walletData, key)) {
+            const walletEntry = walletData[key];
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${count}</td>
+              <td>${walletEntry.kendaraan}</td>
+              <td>${walletEntry.waktu}</td>
+              <td>${walletEntry.jumlah}</td>
+            `;
+            walletTableBody.appendChild(row);
+            count++;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

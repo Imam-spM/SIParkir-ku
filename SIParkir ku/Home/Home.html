@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Full Page Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="Home.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo"><img src="../Icon/logo.png" alt="" /></div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#">Home</a></li>
+        <li><a href="#About">About</a></li>
+        <li><a href="#Tutorial">Tutorial</a></li>
+      </ul>
+      <div class="user" id="user">
+        <span class="login" onclick="location.href='../Login/Index.html';">Login</span>
+        <span class="register" onclick="location.href='../Login/Index.html?view=register';">Register</span>
+
+      </div>
+      <div class="hamberger" onclick="toggleMenu()">
+        <div class="icon" id="hamIcon">&#9776;</div>
+        <div class="icon" id="closeIcon">&#10006;</div>
+      </div>
+    </nav>
+
+    <section id="Home" class="page1">
+      <h1>Welcome to SIParkir'mu</h1>
+      <p>
+        Experience the future of parking with our next-generation IoT solutions, making parking easier, smarter, and more efficient.
+      </p>
+      <button onclick="location.href='../Login/Index.html';">Start</button>
+    </section>
+
+    <section id="About" class="page2">
+      <h1>About Us</h1>
+      <p>
+        platform parkir inovatif yang mengubah cara Anda memarkirkan kendaraan. 
+        Kami menawarkan solusi parkir cerdas yang menghemat waktu, meningkatkan keamanan, dan memberikan pengalaman yang lebih nyaman bagi pengguna.
+      </p>
+      <section id="Features" class="page">
+        <div class="content">
+          <h2>Fitur Utama</h2>
+          <ul>
+            <li>
+              <strong>Pemantauan Real-time:</strong> Pantau ketersediaan tempat
+              parkir secara real-time melalui aplikasi kami.
+            </li>
+            <li>
+              <strong>Reservasi Tempat Parkir:</strong> Pesan tempat parkir Anda
+              sebelum tiba di lokasi untuk menghemat waktu.
+            </li>
+            <li>
+              <strong>Keamanan Tinggi:</strong> Kamera CCTV dan sensor IoT
+              memastikan keamanan kendaraan Anda.
+            </li>
+            <li>
+              <strong>Pembayaran Digital:</strong> Lakukan pembayaran parkir
+              dengan mudah melalui berbagai metode pembayaran digital.
+            </li>
+            <li>
+              <strong>Analitik Cerdas:</strong> Dapatkan laporan dan analisis
+              penggunaan parkir untuk manajemen yang lebih baik.
+            </li>
+          </ul>
+        </div>
+      </section>
+    </section>
+
+    <section id="Tutorial" class="tutorial">
+      <h1>Tutorial</h1>
+      <p>
+        
+      </p>
+      <section id="HowItWorks" class="page">
+        <div class="content2">
+          <h2>Bagaimana Cara Kerjanya</h2>
+          <p>
+            SIParkir'mu mengintegrasikan berbagai perangkat IoT seperti sensor
+            parkir, kamera CCTV, dan aplikasi mobile untuk memberikan pengalaman
+            parkir yang mulus dan terintegrasi. Berikut adalah langkah-langkah
+            penggunaannya:
+          </p>
+          <ol>
+            <li>Unduh dan instal aplikasi SIParkir'mu di perangkat Anda.</li>
+            <li>
+              Cari tempat parkir terdekat dan periksa ketersediaannya secara
+              real-time.
+            </li>
+            <li>Reservasi tempat parkir Anda melalui aplikasi.</li>
+            <li>Parkir kendaraan Anda di lokasi yang telah dipesan.</li>
+            <li>Lakukan pembayaran secara digital melalui aplikasi.</li>
+          </ol>
+        </div>
+      </section>
+    </section>
+
+    <section id="Benefits" class="page">
+      <div class="content">
+        <h2>Manfaat Menggunakan SIParkir'mu</h2>
+        <p>
+          Dengan menggunakan SIParkir'mu, Anda akan merasakan berbagai manfaat
+          seperti:
+        </p>
+        <ul>
+          <li>
+            <strong>Efisiensi Waktu:</strong> Menghemat waktu Anda dalam mencari
+            tempat parkir.
+          </li>
+          <li>
+            <strong>Kenyamanan:</strong> Pengalaman parkir yang lebih nyaman dan
+            tanpa stres.
+          </li>
+          <li>
+            <strong>Keamanan:</strong> Kendaraan Anda lebih aman dengan
+            pemantauan canggih.
+          </li>
+          <li>
+            <strong>Penghematan Biaya:</strong> Optimalisasi penggunaan tempat
+            parkir mengurangi biaya operasional.
+          </li>
+          <li>
+            <strong>Ramah Lingkungan:</strong> Mengurangi emisi kendaraan dengan
+            meminimalkan waktu pencarian parkir.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="Contact" class="page">
+      <div class="content">
+        <h2>Hubungi Kami</h2>
+        <p>
+          Jika Anda memiliki pertanyaan atau memerlukan bantuan, jangan ragu
+          untuk menghubungi kami:
+        </p>
+        <p>
+          Email: support@siparkirmu.com<br />
+          Telepon: +62 123 4567 890<br />
+          Alamat: Jl. Parkir Pintar No. 123, Jakarta, Indonesia
+        </p>
+      </div>
+    </section>
+    <script src="Home.js"></script>
+  </body>
+</html>

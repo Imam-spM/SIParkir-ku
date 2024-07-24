@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="profile">
+      <div class="profile-header">
+        <img id="profile-pic" src="/public/Icon/Bitcoin.png" alt="Profile Picture"/>
+        <h2 id="display-name">User Name</h2>
+        <i id="edit-profile" class="fa-regular fa-pen-to-square" style="cursor: pointer"></i>
+      </div>
+      <div class="social-media">
+        <button class="button"><i class="fa-brands fa-instagram"></i></button>
+        <button class="button"><i class="fa-brands fa-whatsapp"></i></button>
+        <button class="button"><i class="fa-brands fa-twitter"></i></button>
+        <button class="button"><i class="fa-brands fa-github"></i></button>
+      </div>
+      <div class="profile-details">
+        <p>Email: <span id="profile-email">user@example.com</span></p>
+        <p>Password: <span id="profile-password">******</span></p>
+        <button id="logout-btn">Logout</button>
+      </div>
+    </div>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" id="close-modal">&times;</span>
+        <h2>Edit Profile</h2>
+        <form id="edit-profile-form">
+          <label for="edit-username">Username:</label>
+          <input type="text" id="edit-username" name="edit-username"/>
+          <label for="edit-email">Email:</label>
+          <input type="email" id="edit-email" name="edit-email"/>
+          <button type="submit">Save Changes</button>
+        </form>
+      </div>
+    </div>
+    <script src="main.js" type="module"></script>
+  </body>
+</html>

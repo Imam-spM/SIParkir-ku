@@ -1,0 +1,487 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.navbar {
+  background-color: #0e3f0ef5;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo img {
+  width: 100px;
+  height: 40px;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Centered the navigation items */
+  align-items: center; 
+  position: relative;
+  width: 300px; /* Adjusted for a more realistic size */
+  height: 50px; /* Adjusted for a more realistic size */
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links li {
+  margin-right: 20px;
+}
+
+.nav-links li:last-child {
+  margin-right: 0; /* Remove margin from the last item */
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px; /* Adjusted font size */
+  padding: 10px 15px; /* Added padding for better click area */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+  border-radius: 5px; /* Added border radius */
+}
+
+.nav-links li a:hover {
+  background-color: #555; /* Hover background color */
+  color: #ffcc00; /* Hover text color */
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  height: 50px;
+  padding : 20px;
+}
+
+.username {
+  margin-right: 15px;
+  padding-right: 20px; /* Tambahkan padding di sebelah kanan username */
+  border-right: 1px solid #e0e0e0; /* Tambahkan garis antara username dan gambar pengguna */
+}
+
+.user img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background-color: #333;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #fff;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #575757;
+}
+
+.user:hover .dropdown-content {
+  display: block;
+}
+
+.hamberger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.hamberger .icon {
+  display: none;
+}
+
+.hamberger .icon#hamIcon {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  
+  .nav-links {
+    display: none; /* Hide nav-links by default on small screens */
+    flex-direction: column; /* Change layout to vertical */
+    width: 100%; /* Full width for small screens */
+    border-radius: 0; /* Remove border radius for small screens */
+    box-shadow: none; /* Remove box shadow for small screens */
+    background-color: #333; /* Background color to match the navbar */
+    position: absolute; /* Position absolute to be controlled by top property */
+    width: 300px;
+    height: 50px;
+  }
+
+  .hamberger {
+    display: flex;
+    align-items: center;
+    order: 1;
+  }
+
+  .hamberger .icon {
+    display: block;
+  }
+
+  .hamberger .icon#closeIcon {
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+    
+  }
+
+  .nav-links.active li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .hamberger.active .icon#hamIcon {
+    display: none;
+  }
+
+  .hamberger.active .icon#closeIcon {
+    display: block;
+  }
+
+  .user {
+    order: 1;
+    margin-left: auto;
+  }
+}
+
+
+
+/* Section styling */
+.section {
+  background-color: #ffff;
+  display: flex;
+  justify-content: center; /* Center dashboard horizontally */
+  align-items: center; /* Center dashboard vertically */
+  padding: 20px; /* Add some padding for smaller screens */
+}
+
+/* Dashboard styling */
+.dashboard {
+  box-sizing: border-box;
+  background-image: url(../public/Icon/bg-dashboard.svg);
+  width: 100%; /* Set width to 100% and use max-width for responsiveness */
+  height: 180px;
+  background-size: cover;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center; /* Center welcome message horizontally */
+  align-items: center; /* Center welcome message vertically */
+  position: relative;
+  padding: 20px; /* Add some padding */
+}
+
+/* Span styling */
+.dashboard span {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white; /* Ensure the text is visible */
+  font-size: 24px;
+  font-weight: bold;
+ }
+
+/* Welcome message styling */
+.welcome-message {
+  background-color: #18122bd6;
+  box-sizing: border-box;
+  width: 100%; /* Set width to 100% and use max-width for responsiveness */
+  max-width: 600px; /* Maximum width for larger screens */
+  height: 120px;
+  font-size: 30px;
+  color: white;
+  display: flex;
+  justify-content: center; /* Center text horizontally */
+  align-items: center; /* Center text vertically */
+  border-radius: 10px;
+  opacity: 0; /* Start hidden */
+  animation: fadeIn 2s forwards; /* Fade-in animation */
+}
+
+/* Fade-in animation keyframes */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .section {
+    height: auto; /* Allow height to adjust based on content */
+    padding: 10px;
+  }
+
+  .dashboard {
+    width: 100%; /* Full width on smaller screens */
+    height: 200px; /* Allow height to adjust based on content */
+    padding: 10px; /* Reduce padding */
+  }
+
+  .dashboard span {
+    font-size: 18px; /* Adjust font size */
+  }
+
+  .welcome-message {
+    max-width: 80%; /* Full width on smaller screens */
+    height: 60%; /* Allow height to adjust based on content */
+    font-size: 15px; /* Adjust font size */
+    padding: 10px; /* Add padding */
+  }
+}
+
+.content {
+  padding: 20px;
+  background-color: #ffff;
+}
+
+.slot-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  gap: 20px;
+}
+
+.slot-total,
+.slot-entry,
+.slot-exit {
+  flex: 1;
+  padding: 20px;
+  background-color: #807979;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.slot-total h3,
+.slot-entry h3,
+.slot-exit h3 {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.slot-total button,
+.slot-exit button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.slot-total button:hover,
+.slot-exit button:hover {
+  background-color: #45a049;
+}
+
+.control1 {
+  display: flex;
+  background-color: #45a049;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  height: auto;
+}
+
+.control {
+  margin-top: 20px;
+  height: 60px;
+  
+}
+
+.control label {
+  font-weight: bold;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.control select {
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+.control select:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.control select:hover {
+  border-color: #4caf50;
+}
+
+/* Switch CSS */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Clock container styling */
+.clock-container {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Date styles */
+.date {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+/* Time styles */
+.time {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .control {
+    margin-bottom: 20px;
+  }
+
+  .clock-container {
+    padding: 10px 20px;
+  }
+
+  .date {
+    font-size: 18px;
+  }
+
+  .time {
+    font-size: 36px;
+  }
+}
+
+/* Footer container styles */
+
+/* Footer styles */
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  background-color: #20232a;
+  color: #61dafb;
+  
+}
+
+.footer-content {
+  font-size: 14px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .clock-container {
+    padding: 10px 20px;
+  }
+
+  .date {
+    font-size: 18px;
+  }
+
+  .time {
+    font-size: 36px;
+  }
+
+  .footer-content {
+    font-size: 12px;
+  }
+}

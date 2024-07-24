@@ -1,0 +1,245 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.navbar {
+  background-color: #0e3f0ef5;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo img {
+  width: 100px;
+  height: 40px;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Centered the navigation items */
+  align-items: center; 
+  position: relative;
+  width: 300px; /* Adjusted for a more realistic size */
+  height: 50px; /* Adjusted for a more realistic size */
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links li {
+  margin-right: 20px;
+}
+
+.nav-links li:last-child {
+  margin-right: 0; /* Remove margin from the last item */
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px; /* Adjusted font size */
+  padding: 10px 15px; /* Added padding for better click area */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+  border-radius: 5px; /* Added border radius */
+}
+
+.nav-links li a:hover {
+  background-color: #555; /* Hover background color */
+  color: #ffcc00; /* Hover text color */
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  height: 50px;
+  padding : 20px;
+}
+
+.username {
+  margin-right: 15px;
+  padding-right: 20px; /* Tambahkan padding di sebelah kanan username */
+  border-right: 1px solid #e0e0e0; /* Tambahkan garis antara username dan gambar pengguna */
+}
+
+.user img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background-color: #333;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #fff;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #575757;
+}
+
+.user:hover .dropdown-content {
+  display: block;
+}
+
+.hamberger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.hamberger .icon {
+  display: none;
+}
+
+.hamberger .icon#hamIcon {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  
+  .nav-links {
+    display: none; /* Hide nav-links by default on small screens */
+    flex-direction: column; /* Change layout to vertical */
+    width: 100%; /* Full width for small screens */
+    border-radius: 0; /* Remove border radius for small screens */
+    box-shadow: none; /* Remove box shadow for small screens */
+    background-color: #333; /* Background color to match the navbar */
+    position: absolute; /* Position absolute to be controlled by top property */
+    width: 300px;
+    height: 50px;
+  }
+
+  .hamberger {
+    display: flex;
+    align-items: center;
+    order: 1;
+  }
+
+  .hamberger .icon {
+    display: block;
+  }
+
+  .hamberger .icon#closeIcon {
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+    
+  }
+
+  .nav-links.active li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .hamberger.active .icon#hamIcon {
+    display: none;
+  }
+
+  .hamberger.active .icon#closeIcon {
+    display: block;
+  }
+
+  .user {
+    order: 1;
+    margin-left: auto;
+  }
+}
+
+/* Content Styles */
+.content {
+  padding: 20px;
+}
+
+.history {
+  margin-top: 20px;
+  
+}
+
+#delete-all-btn {
+  position: absolute;
+  top: 0; /* Distance from the top of the history section */
+  right: 0; /* Distance from the right side of the history section */
+  background-color: #ff4d4d; /* Red background color */
+  color: white; /* White text color */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 14px; /* Font size */
+  margin: 100px;
+}
+
+#delete-all-btn:hover {
+  background-color: #ff1a1a; /* Darker red on hover */
+}
+
+.history h2 {
+  color: #333;
+}
+
+#history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#history-table th,
+#history-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+#history-table th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+#history-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#history-table tr:hover {
+  background-color: #ddd;
+}
+
+button {
+  cursor: pointer;
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+}
+
+button:hover {
+  background-color: #555;
+}
